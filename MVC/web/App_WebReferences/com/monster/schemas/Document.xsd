@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Enumerations.xsd" />
+  <xsd:complexType name="DocumentQueryType">
+    <xsd:sequence>
+      <xsd:element name="UserID" type="xsd:string" />
+      <xsd:element name="DocumentType" type="DocumentTypeEnumStr" />
+      <xsd:element name="DocumentRefID" type="xsd:string" />
+      <xsd:element minOccurs="0" name="SessionTicket" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DocumentQuery" type="DocumentQueryType" />
+  <xsd:element name="DocumentQueryByTextResumeID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="TextResumeID" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>TextResumeID to retrieve a document for.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="ChannelAlias" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>ChannelAlias of channel resume is on.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="DocumentQueryResponseType">
+    <xsd:sequence>
+      <xsd:element name="Document" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Base64 encoded document.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DocumentContentType" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+            <definition xmlns="http://schemas.monster.com/Monster">Content/mime type associated with file.</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="documentId" type="xsd:string" use="optional" />
+    <xsd:attribute name="documentRefId" type="xsd:string" use="optional" />
+  </xsd:complexType>
+  <xsd:element name="DocumentQueryResponse" type="DocumentQueryResponseType" />
+</xsd:schema>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://ns.hr-xml.org/2006-02-28" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ns.hr-xml.org/2006-02-28" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Text" type="xs:string" />
+  <xs:element name="ScreeningsSummary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ClientReferences" />
+        <xs:element maxOccurs="unbounded" ref="AdditionalItems" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Screenings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Screening" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScreeningStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="OrderStatus" type="xs:string" />
+        <xs:element minOccurs="0" name="ResultStatus" type="xs:string" />
+        <xs:element minOccurs="0" ref="DateOrderReceived" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Screening">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ProviderReferenceId" />
+        <xs:element ref="ScreeningStatus" />
+      </xs:sequence>
+      <xs:attribute name="type" type="xs:string" use="required" />
+      <xs:attribute name="qualifier" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProviderReferenceId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="IdValue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PackageId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="IdValue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IdValue">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="name" type="xs:string" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DateOrderReceived" type="xs:string" />
+  <xs:element name="ClientReferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="IdValue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BackgroundReports">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ProviderReferenceId" />
+        <xs:element ref="BackgroundReportPackage" />
+      </xs:sequence>
+      <xs:attribute name="userId" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BackgroundReportPackage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="PackageId" />
+        <xs:element ref="ScreeningStatus" />
+        <xs:element ref="ScreeningsSummary" />
+        <xs:element ref="Screenings" />
+      </xs:sequence>
+      <xs:attribute name="type" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdditionalItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Text" />
+      </xs:sequence>
+      <xs:attribute name="type" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

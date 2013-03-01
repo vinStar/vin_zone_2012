@@ -1,0 +1,1580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:include schemaLocation="JobSearchAgent.xsd" />
+  <xsd:include schemaLocation="Document.xsd" />
+  <xsd:element name="JobSeekers">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobSeeker" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeeker" type="JobSeekerType" />
+  <xsd:complexType name="JobSeekerType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="Channel">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Internal Monster value</definition>
+            <definition xmlns="http://schemas.monster.com/Monster">Internal Monster value</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="CompanyReference" type="CompanyReferenceType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">CompanyReference is here to associate a JobSeeker with a Private Label.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="PersonalData" type="PersonalDataType" />
+      <xsd:element minOccurs="0" name="Account" type="AccountType" />
+      <xsd:element minOccurs="0" name="Profile" type="ProfileType" />
+      <xsd:element minOccurs="0" name="Resumes" type="ResumesType" />
+      <xsd:element minOccurs="0" name="CustomQuestions" type="CustomQuestionsType" />
+      <xsd:element minOccurs="0" name="Letters" type="LettersType" />
+      <xsd:element minOccurs="0" name="JobSearchAgents" type="JobSearchAgentsType" />
+      <xsd:element minOccurs="0" name="JobSeekerProperties" type="PropertiesType" />
+      <xsd:element minOccurs="0" name="OidClaim" type="OidClaimType" />
+    </xsd:sequence>
+    <xsd:attribute name="seekerId" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">Unique monster identifier of the Seeker</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="seekerScope">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">Identifies the type of Seeker. Private means its a companies private applicant. Normal is for a seeker that would be created from my.monster.com</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="private" />
+          <xsd:enumeration value="normal" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="status" type="xsd:string" use="required" />
+    <xsd:attribute name="seekerAction">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">The action to take against the seeker data.UpdatePartial allows a minimal set of fields to be updated if provided with key information in the form of seekerId or the UserName and Password</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="add" />
+          <xsd:enumeration value="update" />
+          <xsd:enumeration value="addOrUpdate" />
+          <xsd:enumeration value="ignore" />
+          <xsd:enumeration value="updatePartial" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="seekerRefCode" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">non-Monster identifier for the seeker</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="JobSeekerResumeDeleteByTextResumeID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="TextResumeID" />
+        <xsd:element name="UserID" />
+        <xsd:element name="UserName" />
+        <xsd:element name="ChannelAlias" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerResumeDeleteByTextResumeIDResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Descriptions" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerResumeDeleteByResumeRefCode">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ResumeRefCode" />
+        <xsd:element name="UserID" />
+        <xsd:element name="UserName" />
+        <xsd:element name="ChannelAlias" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerResumeDeleteByResumeRefCodeResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Descriptions" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerResumeDeleteAllByUser">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="UserID" />
+        <xsd:element name="UserName" />
+        <xsd:element name="ChannelAlias" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerResumeDeleteAllByUserResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Descriptions" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerDeleteByUserName">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="UserName" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element ref="ChannelID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerDeleteBySeekerRefCode">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="SeekerRefCode" />
+        <xsd:element minOccurs="0" ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="ChannelID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekersDeleteBySeekerRefCode">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="unbounded" ref="JobSeekerDeleteBySeekerRefCode" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerDeleteByEmailAddress">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="EmailAddress" />
+        <xsd:element minOccurs="0" ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="ChannelID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekersDeleteByEmailAddress">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="unbounded" ref="JobSeekerDeleteByEmailAddress" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerDeleteByTextResumeID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element minOccurs="0" ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="ChannelID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekersDeleteByTextResumeID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="unbounded" ref="JobSeekerDeleteByTextResumeID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerResumeDeleteResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Descriptions" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekersResumeDeleteResponses">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="1" name="Status" type="StatusType" />
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobSeekersResumeDeleteResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekersResumeDeleteResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DeleteRequest" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Delete request associated to this response.</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element ref="JobSeekerResumeDeleteResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByTextResumeID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByTextResumeIDChannelAlias">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerAndDocumentByTextResumeID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerAndDocumentByTextResumeIDChannelAlias">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByTextResumeIDNoCharge">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+        <xsd:element minOccurs="0" ref="JobSeekerBuildProperties" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByResumeIDNoCharge">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ResumeID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+        <xsd:element minOccurs="0" ref="JobSeekerBuildProperties" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByResumeIDNoChargeNoAccessCheck">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ResumeID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+        <xsd:element minOccurs="0" ref="JobSeekerBuildProperties" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerProfileByUserIdNoCharge">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="UserID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerProfileByUserIdNoChargeNoAccessCheck">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="UserID" />
+        <xsd:element minOccurs="0" ref="RenderedResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByTextResumeIDCoverLetter">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element ref="CoverLetterID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByResumeRefCode">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ResumeRefCode" />
+        <xsd:element ref="UserName" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="RenderedResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByResumeRefCodeUserID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ResumeRefCode" />
+        <xsd:element ref="UserID" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="RenderedResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerAndDocumentByResumeRefCode">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ResumeRefCode" />
+        <xsd:element ref="UserName" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element minOccurs="0" ref="RenderedResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByResumeRefCodeCoverLetter">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ResumeRefCode" />
+        <xsd:element ref="UserName" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element ref="CoverLetterID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByResumeRefCodeUserIDCoverLetter">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ResumeRefCode" />
+        <xsd:element ref="UserID" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element ref="CoverLetterID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByTextResumeIDChannelAliasSessionTicket">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element ref="SessionTicket" />
+        <xsd:element ref="RenderedResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByTextResumeIDChannelAliasSessionTicketCoverLetter">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="TextResumeID" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element ref="SessionTicket" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element ref="CoverLetterID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByUserID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="UserID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+        <xsd:element minOccurs="0" ref="JobSeekerBuildProperties" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByUserIDCoverLetter">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="UserID" />
+        <xsd:element ref="RenderedResume" />
+        <xsd:element minOccurs="0" ref="ExcludeStructuredResume" />
+        <xsd:element ref="CoverLetterID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerByUserName">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="UserName" />
+        <xsd:element ref="ChannelAlias" />
+        <xsd:element ref="RenderedResume" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetJobSeekerResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Descriptions" />
+        <xsd:element ref="JobSeekers" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="DeactivateResume">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="EmailAddress" />
+        <xsd:element ref="ChannelID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="DeactivateResumeResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Result" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Indicates success or failure. True = success, False = failure.</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">bool</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element ref="Descriptions" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="TextResumeID" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">TextResumeID of resume</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ResumeID" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">ResumeID of resume</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ChannelAlias" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">ChannelAlias of seeker</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="UserName" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">UserName of seeker</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="SeekerRefCode" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">SeekerRefCode of seeker</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="EmailAddress" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">EmailAddress of seeker</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="SessionTicket" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">SessionTicket</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ResumeRefCode" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">ResumeRefCode of resume</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="RenderedResume" type="xsd:boolean">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">Indicates whether a rendered version of the resume should be provided</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">Boolean</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ExcludeStructuredResume" type="xsd:boolean">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">Indicates whether structured resume should be excluded from the response.</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">Boolean</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="CoverLetterID" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">ID of coverletter to retrieve with JobSeeker</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="PersonalDataType">
+    <xsd:sequence>
+      <xsd:element name="Contact" type="ContactType" />
+      <xsd:element minOccurs="0" name="DemographicDetail" type="DemographicDetailType" />
+      <xsd:element minOccurs="0" name="SocialSecurityNumber" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Captured for Seekers for the USAJOBS product only</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="UserDriversLicenses" type="UserDriversLicensesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AccountType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Username" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">username to access Monster</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">20</datalength>
+            <validation xmlns="http://schemas.monster.com/Monster">Required if seekerScope="normal" and the seekerId is missing</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Password" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">password used to access Monster</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">20</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="PasswordHint" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">password hint used to get password</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">50</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="NickName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">nickname used to access certain Monster functionality</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">50</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Confidential" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Whether the users contact info will be confidential or not. 0 - not confidential, 1 - confidential</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Boolean</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ProfileType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="CareerLevel" nillable="true" type="CareerLevelEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Career level of the JobSeeker</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Availability" type="AvailabilityType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates when the JobSeeker is available to start</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Languages" type="LanguagesType" />
+      <xsd:element minOccurs="0" name="ContactPreference" nillable="true" type="ContactPreferenceEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates a Contact Preference for the Seeker</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="TotalYearsWorkExperience" nillable="true" type="YearsOfExperienceEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the total years of work experience for the Seeker</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="HighestEducationDegree" nillable="true" type="EducationDegreeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The highest educational degree attained</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="HighestEducationDegreeYearAttained" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The year that the highest educational degree was attained</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="TargetJobTitle" nillable="true" type="OccupationalClassificationTier3JobTitleType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The current job title of the user</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="YearsInLeadership" nillable="true" type="YearsUserExpEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Defines total years of leadership experience</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="YearsInManagement" nillable="true" type="YearsUserExpEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Defines total years of management experience</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ResumeIcons" type="ResumeIconsType" />
+      <xsd:element minOccurs="0" name="CareerStatus" nillable="true" type="CareerStatusEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Career level of the JobSeeker</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="HukouLocationID" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">China location of the JobSeeker</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ProfessionalLicenses" type="ProfessionalLicensesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AvailabilityType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="AvailableTimeStart" nillable="true" type="AvailableTimeStartEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates when the seeker is willing to start work. See AvailableTimeStartEnumStr for the choices</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="AvailableDate" nillable="true" type="DateType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates a date that the seeker is willing to start work</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResumesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Resume" type="ResumeType" />
+    </xsd:sequence>
+    <xsd:attribute name="resumesAction">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="deleteAll" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="ResumeType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="BoardName">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Board where this resume is active.</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ResumeTitle" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Title of the resume</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">500</datalength>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ResumeModDate" type="DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The date the resume was last modified</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ResumeCreateDate" type="DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The date the resume was created</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DetailedSearchExtras" type="DetailedSearchExtrasType" />
+      <xsd:element minOccurs="0" name="WorkAuthorizations" type="WorkAuthorizationsType" />
+      <xsd:element minOccurs="0" name="MilitaryExperiences" type="MilitaryExperiencesType" />
+      <xsd:element minOccurs="0" name="EmploymentReferences" type="ReferencesType" />
+      <xsd:element minOccurs="0" name="DesiredCompensation" type="CompensationType" />
+      <xsd:element minOccurs="0" name="DesiredEmployer" type="DesiredEmployerType" />
+      <xsd:element minOccurs="0" name="TargetJobTitles">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="TargetJobTitle" type="TargetJobTitleType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition xmlns="http://schemas.monster.com/Monster">
+                    Each desired title has a priority. Each priority should be used a
+                    maximum of once. So, currently there should be a mxaimum of two
+                    occurences of DesiredJobTitle.
+                  </definition>
+                  <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+                  <datalength xmlns="http://schemas.monster.com/Monster">70</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DesiredLocation" type="DesiredLocationEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The Desired Location field on the TargetJob page</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Objective" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Career objective on the resume</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">2000</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="EmploymentHistory" type="EmploymentHistoryType" />
+      <xsd:element minOccurs="0" name="EducationalHistory" type="EducationalHistoryType" />
+      <xsd:element minOccurs="0" name="Skills" type="SkillsType" />
+      <xsd:element minOccurs="0" ref="Affiliations" />
+      <xsd:element minOccurs="0" name="ContactPreference" type="ContactPreferenceEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The contact preference for a seeker on the Candidate Information page</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="WorkPreferences" type="WorkPreferencesType" />
+      <xsd:element minOccurs="0" name="Shifts" type="ShiftsType" />
+      <xsd:element minOccurs="0" name="AdditionalInformation" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Additional information on the resume</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">3000</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="OtherAdditionalInformation" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">
+              Other Additional information on the resume.
+              This field is only used by government customers and is
+              only supported outbound.
+            </definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="TextResume" type="TextResumeType" />
+      <xsd:element minOccurs="0" name="CustomQuestions" type="CustomQuestionsType" />
+      <xsd:element minOccurs="0" name="ResumeAttachments">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="ResumeAttachment" type="ResumeAttachmentType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="WillingtoTravel" type="WillingtoTravelEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The answer to "I am willing to travel" question on the TargetJob page</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Boolean</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="LanguageOfResume" nillable="true" type="LanguagesEnumString">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the language the resume is written in</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="Channel">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Specifies the internal monster channel for the resume.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Builder" type="StringWithIdType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Optional value giving the ID of the builder to be used to display the resume.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ResumeDocument" type="DocumentType" />
+      <xsd:element minOccurs="0" name="ResumeProperties" type="PropertiesType" />
+      <xsd:element minOccurs="0" name="ResumeOrigin" type="ResumeOriginType" />
+      <xsd:element minOccurs="0" name="Awards" type="AwardsType" />
+      <xsd:element minOccurs="0" name="CareerHighlights" type="CareerHighlightsType" />
+      <xsd:element minOccurs="0" name="Interests" type="InterestsType" />
+      <xsd:element minOccurs="0" name="IndustryCertifications" type="IndustryCertificationsType" />
+      <xsd:element minOccurs="0" name="ExternalRequisitions" type="ExternalRequisitionsType" />
+    </xsd:sequence>
+    <xsd:attribute name="textResumeId" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">Textual monster unique identifier for the resume</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="resumeRefCode" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">non-Monster identifier for the resume</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+          <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="resumeAction">
+      <xsd:simpleType>
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">This defines the action to perform against the resume</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="add" />
+          <xsd:enumeration value="update" />
+          <xsd:enumeration value="addOrUpdate" />
+          <xsd:enumeration value="ignore" />
+          <xsd:enumeration value="delete" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="ResumeAttachmentType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="ResumeAttachmentType" type="AttachmentTypeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">the type of attachment</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ResumeAttachmentPath" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">full path of the location of the resume attachment</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">200</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ShiftsType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="Shift" type="ShiftsEnumString">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The anwer to the "What shifts would you be willing to work" question on the Target Job page</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DetailedSearchExtrasType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="WillingToRelocate" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The answer to "I am willing to relocate" question on the Target Location page</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Boolean</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="JobStatus" type="JobStatusEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The Job Seeker desired status on the TargetJob page</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="JobType" type="UserPreferredJobCodeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The Job Seeker desired Job Typeon the TargetJob page</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="GeographicPrefs">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="GeographicPref" type="LocationType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition xmlns="http://schemas.monster.com/Monster">Locations on the Target Location page</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="AreaOfStudys">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="AreaOfStudy" type="AreaOfStudyEnumStr">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition xmlns="http://schemas.monster.com/Monster">Areas of study</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="WorkAuthorizationsType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="WorkAuthorization" type="WorkAuthorizationType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="WorkAuthorizationType">
+    <xsd:sequence>
+      <xsd:element name="AuthStatus" type="AuthEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">JobSeeker's work authorization status in the specified company</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CountryCode" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Country code 2 letter abbrev for the country the Auth applies to</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">2</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ReferencesType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="Reference" type="ReferenceType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ReferenceType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="PositionTitle" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The job title for the reference</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">70</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Contact" type="ContactType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">
+              Name/CompanyName/E-mail/Phone phoneType="work" are supported.
+              Name - 100 chars maximum
+              CompanyName -  100 chars maximum
+              E-mail 	-  100 chars maximum
+              Phone phoneType="work" - 50 chars maximum
+            </definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="referenceType" use="required">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="professional" />
+          <xsd:enumeration value="personal" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="monsterId" type="xsd:string" />
+  </xsd:complexType>
+  <xsd:complexType name="CompensationType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="CompensationType" type="CompensationTypeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">indicates the pay period referenced by the Rate field.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Currency" type="CurrencyType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The desired currency</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Rate" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Amount desired per the Compensation type</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="RateMin" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Minimum amount desired per the Compensation type</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="RateMax" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Maximum amount desired per the Compensation type</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DesiredEmployerType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="CompanyDescription" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Description of the ideal company</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">500</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="EmployerSize" type="EmployerSizeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Size of the company for which this Seeker wishes to work</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="IdealJobDescription" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Ideal job description on the resume</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">500</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="TargetEmployerCategories">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="TargetEmployerCategory" type="StringWithIdType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition xmlns="http://schemas.monster.com/Monster">The employer category the jobseeker desires</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="TargetEmployerOccupations">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The list of TargetEmployerOccupations that are assigned to this resume. TargetEmployerOccupations must be associated to a TargetEmployerCategory by categoryId.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="TargetEmployerOccupation" type="TargetEmployerOccupationType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition xmlns="http://schemas.monster.com/Monster">Occupation to which this resume is targeted. The Occupation must be valid for the specified TargetEmployerCategory.</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="TargetJobIndustries" type="IndustriesType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">This is the Monster industry type of the employer desired by the Job Seeker</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TargetJobTitleType">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="OccupationalClassificationTier3JobTitleType">
+        <xsd:attribute name="type" type="TargetJobTitlePriorityType" use="required" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="TargetJobTitlePriorityType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="desired" />
+      <xsd:enumeration value="alternate" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="OccupationalClassificationTier3JobTitleType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster" />
+        <datatype>Text</datatype>
+        <datalength>70</datalength>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Title" type="xsd:string" />
+      <xsd:element minOccurs="0" ref="OccupationalClassification" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EmploymentHistoryType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="Position">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="EmployerName" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Name of the employer</definition>
+                  <datatype>Text</datatype>
+                  <datalength>100</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="PositionTitle" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>postion held</definition>
+                  <datatype>Text</datatype>
+                  <datalength>70</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" ref="OccupationalClassification" />
+            <xsd:element minOccurs="0" name="DateRange" type="DateRangeType" />
+            <xsd:element minOccurs="0" name="EmploymentLocation" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Where the company was located</definition>
+                  <datatype>Text</datatype>
+                  <datalength>100</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="ExperienceDescription" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Description of the employment</definition>
+                  <datatype>Text</datatype>
+                  <datalength>3000</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="ExperienceIndustry" type="IndustryType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Defines the Monster Industry related to this experience</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="monsterId" type="xsd:string" />
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EducationalHistoryType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="SchoolOrInstitution">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="SchoolName" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Name of the school or institution</definition>
+                  <datatype>Text</datatype>
+                  <datalength>100</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="Location" type="LocationType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Where the school is located</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="GPA" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>grade point average</definition>
+                  <datatype>Float</datatype>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="DateRange" type="DateRangeType" />
+            <xsd:element minOccurs="0" name="EducationSummary" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Summary of the school experience</definition>
+                  <datatype>Text</datatype>
+                  <datalength>2000</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="EducationDegree" type="EducationDegreeEnumStr">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>The degree attained</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="EducationSubject" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Subject of the school experience. This is an OPM field</definition>
+                  <datatype>Text</datatype>
+                  <datalength>255</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="EducationMajors" type="EducationMajorsType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>The major(s) related to the School Experience</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="EducationFieldsOfStudy" type="EducationFieldsOfStudyType">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>The fields of study related to the School Experience</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="monsterId" type="xsd:string" />
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SkillsType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="Skill">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="SkillName" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Name of the skill</definition>
+                  <datatype>Text</datatype>
+                  <datalength>50</datalength>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="SkillUsed" type="SkillUsedEnumStr">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>When skill was last used</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="SkillLevel" type="SkillLevelEnumStr">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition>Level of expertise with the skill</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="yearsOfExperience" type="xsd:int">
+            <xsd:annotation>
+              <xsd:documentation>
+                <definition>years of experience with the skill</definition>
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="monsterId" type="xsd:string" />
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Affiliations">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" name="Affiliation">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="AssociationName" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>
+                    <definition>Name of the association with which this JobSeeker is affiliated</definition>
+                    <datatype>Text</datatype>
+                    <datalength>50</datalength>
+                  </xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Role" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>
+                    <definition>Role within the association for this JobSeeker</definition>
+                    <datatype>Text</datatype>
+                    <datalength>50</datalength>
+                  </xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="DateRange" type="DateRangeType" />
+              <xsd:element minOccurs="0" name="AffiliationDescription" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>
+                    <definition>Description of the affiliation that the Jobseeker is affiliated with</definition>
+                    <datatype>Text</datatype>
+                    <datalength>50</datalength>
+                  </xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="monsterId" type="xsd:string" />
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekersResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="ProcessingReceipt" />
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobSeekerResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobSeekerResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="UserResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:choice>
+                <xsd:element ref="JobSeekerReference" />
+                <xsd:element ref="PrivateApplicantReference" />
+              </xsd:choice>
+              <xsd:element name="Status" type="StatusType" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ResumesResponse" type="ResumesResponseType" />
+        <xsd:element minOccurs="0" ref="LettersResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="LettersResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Status" type="StatusType" />
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="LetterResponse">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element ref="LetterReference" />
+              <xsd:element name="LetterAction" type="xsd:string" />
+              <xsd:element name="Status" type="StatusType" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="ResumesResponseType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ResumesAction">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="add" />
+            <xsd:enumeration value="deleteAll" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="Status" type="StatusType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="ResumeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ResumeReference" />
+            <xsd:element name="ResumeAction" type="xsd:string" />
+            <xsd:element name="Status" type="StatusType" />
+            <xsd:element minOccurs="0" ref="DocumentResponse" />
+            <xsd:element minOccurs="0" name="ResumeProperties" type="PropertiesType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DocumentResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DocumentAction" type="xsd:string" />
+        <xsd:element name="Status" type="StatusType" />
+        <xsd:element minOccurs="0" name="ResumeUri" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition>The Uri of the uploaded resume document</definition>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="TargetEmployerOccupationType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>The name of this occupation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="monsterId" type="xsd:long" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The monster ID of this occupation.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="categoryId" type="xsd:long" use="required">
+      <xsd:annotation>
+        <xsd:documentation>ID of a TargetEmployerCategory this occupation is tied to. The occupation must be valid for this category.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="TextResumeType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition><![CDATA[The rendered version of the JobSeeker's resume. If the Seeker used the "copy & paste" option, this will be the text pasted. Otherwise, this is the rendered version of their structured resume.]]></definition>
+            <datatype>Text</datatype>
+            <datalength>unbounded</datalength>
+            <validation>Required if usage of the "structured" resume is ignored.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="extractedResume" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>True when user as entry for given in UserUploadedDocuments. Outbound support only.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="ResumeOriginType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Origin" type="ResumeOriginsEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Id identifying the origin</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="OriginDescription" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>User entered 2nd origin information</definition>
+            <datatype>Text</datatype>
+            <datalength>256</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="JobSeekerBuildProperties">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition>Internal properties used to define how a JobSeeker should be built and what
+				should be included in the JobSeeker\Resume.</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="Export" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition>Indicate that the JobSeeker is being built to support an export.</definition>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AddOrUpdateJobSeekerResumes">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="Email" type="xsd:string" />
+        <xsd:element minOccurs="0" name="UserName" type="xsd:string" />
+        <xsd:element ref="Channel" />
+        <xsd:element name="Resumes" type="ResumesType" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

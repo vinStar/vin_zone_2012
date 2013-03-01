@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<appSettings>
+  <add key="ApplicationName" value="HireTracking"/>
+  <add key="__QueryString_KEY" value="!#$a74?9"/>
+  <!-- WOOT VIEW STATE ALT -->
+  <add key="ServerSideViewState" value="true"/>
+  <add key="ServerSideViewStateBackPageNumber" value="5"/>
+  <add key="vsDays" value="2"/>
+  <add key="Cache" value="True"/>
+  <add key="_XMLConfigFrom" value="\\10.41.0.193\\TestXml\\"/>
+  <add key="__ReportTemp" value="" />
+  <add key="SaveViewStateFolder" value="PersistedViewState"/>
+  <add key="XmlTemplatePath" value="XmlTemplatePath"/>
+  <!--Themes-->
+  <add key="Theme" value="Default" />
+  <!--每页显示多少条-->
+  <add key="PageSize" value="10"/>
+  <!--Hubble.net -->
+  <add key="InitChineseAnalyzer" value="False"/>
+  <!--UploadFiles-->
+  <add key="LogoSize" value="1024 * 5000"/>
+  <add key="LogoFormat" value=".jpg|.bmp|.png|.gif"/>
+  <add key="LogoWidthHeight" value="192,76"/>
+  <add key="LogoNameFormat" value="Logo{0}_{1}"/>
+  <add key="NoLogoName" value="zwtp2.jpg"/>
+
+  <!--公司logo-->
+  <add key="CompanyLogoRoute" value="UploadFiles/CompanyLogo"/>
+
+  <!--CustomerLogo-->
+  <add key="CustomerLogoRoute" value="UploadFiles/CustomerLogo"/>
+
+  <!--CompanyContract-->
+  <add key="CompanyContractRoute" value="UploadFiles/CompanyContract"/>
+
+  <!--CDocument-->
+  <add key="CDocumentRoute" value="UploadFiles/CDocument"/>
+
+  <!--RDocument-->
+  <add key="RDocumentRoute" value="UploadFiles/RDocument"/>
+
+  <!--CandidateHead-->
+  <add key="CandidateHeadRoute" value="UploadFiles/CandidateHeadImages"/>
+   
+  <!--候选人文件-->
+  <add key="FileSize" value="1024 * 50000"/>
+  <add key="FileFormat" value=".jpg|.bmp|.png|.gif|.doc|.docx|.rar|.xls|.xlsx|.ppt|.pdf|.zip"/>
+  <add key="FileNameFormat" value="File{0}_{1}"/>
+  <add key="FileRoute" value="/UploadFiles/CandidateFile/"/>
+
+  <!--求职者简历-->
+  <add key="AFileRoute" value="/UploadFiles/ApplicantResumeFile/"/>
+  <add key="AFileNameFormat" value="File{0}_{1}"/>
+ 
+  <!--候选人简历-->
+  <add key="RFileSize" value="1024 * 50000"/>
+  <add key="RFileFormat" value=".html|.htm|.rtf|.doc|.docx|.pdf"/>
+  <add key="RFileNameFormat" value="File{0}_{1}"/>
+  <add key="RFileRoute" value="/UploadFiles/ResumeFile/"/>
+  <!--筛选文件-->
+  <add key="SFileSize" value="1024 * 50000"/>
+  <add key="SFileFormat" value=".jpg|.bmp|.png|.gif|.doc|.docx|.rar|.xls|.xlsx|.ppt|.pdf|.zip"/>
+  <add key="SFileNameFormat" value="File{0}_{1}"/>
+  <add key="SFileRoute" value="UploadFiles/ScreeningFile"/>
+  <!--客户公司-->
+  <add key="ContSize" value="1024 * 50000"/>
+  <add key="ContFormat" value=".rar|.zip|.doc|.docx|.xls|.xlsx"/>
+  <add key="ContNameFormat" value="Cont{0}_{1}"/>
+  <add key="ContRoute" value="/UploadFiles/CompanyContract/"/>
+  <!--创建候选人-->
+  <add key="PhotoSize" value="1024 * 5000"/>
+  <add key="PhotoFormat" value=".jpg|.bmp|.png"/>
+  <add key="PhotoNameFormat" value="Photo{0}_{1}"/>
+  <add key="PhotoRoute" value="/UploadFiles/ResumePhoto/"/>
+  <add key="PhotoWidthHeight" value="105,107"/>
+  <add key="NoPhotoName" value="hxr-zhaopian.jpg"/>
+
+  <!--加密/解密 参数-->
+  <add key="Password" value="#A$aSW+E16WER"/>
+  <add key="Salt" value="Kosher"/>
+  <add key="HashAlgorithm" value="SHA1"/>
+  <add key="PasswordIterations" value="2"/>
+  <add key="InitialVector" value="OFRna73m#*az201xY"/>
+  <add key="KeySize" value="256"/>
+
+  <!--WebSiteUrlhttp://10.146.210.110/HireTracking-->
+  <add key="WebSiteUrl" value="http://localhost:7758"/> 
+  <add key="WebSiteManager" value="/Manager"/>
+  <add key="WebSiteOpen" value="/Open"/>
+  <add key="ApplyJobUrl" value="http://localhost:7758/HireTracking/Public/Applicant/ApplyJobLanding.aspx?JobID="/>
+  <add key="ActivationSuccess" value="/Users/Activation/ActivationSuccess.aspx?UserID="/>
+  
+  <!--HTML TO PDF-->
+  <add key="pdfConverterKey" value="GjErOigoOiM6LTQqOikrNCsoNCMjIyM="/>
+  <add key="pdfMergeKey" value="GjErOigoOiM6LTQqOikrNCsoNCMjIyM="/>
+  <add key="pdfSplitManagerKey" value="GjErOigoOiM6LTQqOikrNCsoNCMjIyM="/>
+  <!--头像路径-->
+  <add key="HeaderImageUrl" value="/UploadFiles/HeaderImages/"/>
+  <!--猎头管理员用户头像路径-->
+  <add key="RecruiterAdminImageUrl" value="/UploadFiles/HeaderImages/"/>
+  <!--缓存前缀-->
+  <add key="CacheAppPrefix" value="HTCache_"/>
+  <add key="DomainName" value=".hiretracking.com"/>
+  <!--空间大小-->
+  <add key="SystemSetSpaceSize" value="200"/>
+  <!--邮箱服务器配置-->
+  <add key="Encoding" value="gb2312"/>
+  <add key="ContentType" value="text/html"/>
+  <add key="__MailReciever" value="abc@fkr.com"/>
+  <add key="__MailReciever_CC" value="abc@fkr.com"/>
+  <add key="__MailReciever_Distribute_CC" value=""/>
+  <add key="__SmtpServer" value="smtp.future-career.com.cn"/>
+  <add key="__MailFrom" value="test@future-career.com.cn"/>
+  <add key="__MailFromAddress" value="test@future-career.com.cn"/>
+  <add key="__MailPassword" value="fkr304306"/>
+  <add key="__Email" value="True"/>
+
+  <!--FCK编辑器 配置-->
+  <add key="FCKeditor:BasePath" value="~/fckeditor/"/>
+  <add key="FCKeditor:UserFilesPath" value="/Upload/FCKUPLoad/"/>
+  <add key="PageSize" value="10"/>
+  <!--简历分析器用户名/密码-->
+  <add key="DaxtraUser" value="futurecareer"/>
+  <add key="DaxtraPwd" value="daxtra"/>
+  
+  <!--防注入配置-->
+  <add key="NoCheckUrl" value="AddClient.aspx,CompanyDept.aspx,CompanyBasicInfo.aspx,CreateCandidate.aspx,PrintPreview.aspx,JobView.aspx,AjaxApplicant.ashx,AjaxCandidate.ashx,AjaxCandidateJob.ashx,AjaxClient.ashx,AjaxJob.ashx,AjaxRecruiterAdmin.ashx,AjaxSettings.ashx,Ajaxupload.ashx,AjaxVerifyCode.ashx,ScriptResource.axd"/>
+  <add key="GlobalErrorLogPath" value="~/UrlVisitorLog/" />
+  <add key="ErrorBackUrl" value="~/error.htm" />
+
+  <add key="com.monster.schemas.MonsterBusinessGatewayService" value="https://gateway.monster.com:8443/bgwBroker"/>
+</appSettings>

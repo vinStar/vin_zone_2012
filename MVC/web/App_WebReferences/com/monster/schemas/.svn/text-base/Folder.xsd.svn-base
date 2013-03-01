@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:include schemaLocation="JobSeeker.xsd" />
+  <xsd:include schemaLocation="Job.xsd" />
+  <xsd:include schemaLocation="JobApplicants.xsd" />
+  <xsd:element name="Folders" type="FoldersType" />
+  <xsd:complexType name="FoldersType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="Folder" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Folder" type="FolderType" />
+  <xsd:complexType name="FolderType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="FolderName" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The name of the folder</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">100</datalength>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="CompanyReference" type="CompanyReferenceType" />
+      <xsd:element minOccurs="0" name="CreatedByRecruiterReference" type="RecruiterReferenceType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The recruiter that owns the folder, and has full control of the folder. Inbound, you need to specify the userId or the UserName. Monster can provide these values to you, if needed.</definition>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="FolderAccesses" />
+      <xsd:element minOccurs="0" name="IsHidden" type="xsd:string" />
+      <xsd:element minOccurs="0" ref="LastActivityDate" />
+      <xsd:element minOccurs="0" ref="ModifiedDate" />
+      <xsd:element minOccurs="0" name="JobApplicants">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">JobApplicants are currently supported only outbound.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" ref="JobApplicant" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="Job" />
+      <xsd:element minOccurs="0" ref="JobReference" />
+      <xsd:element minOccurs="0" name="JobRequisition" type="JobRequisitionType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Questionnaire" type="QuestionnaireType" />
+      <xsd:element minOccurs="0" name="ApplicationSourcingInformation">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">This object provides information about ones applicant data management techniques. This object's primary purpose is to support the new OFCCP regulations for government contractors.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Description" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation>
+                  <definition xmlns="http://schemas.monster.com/Monster">The description of the applicant data management techniques.  This field has a maximum size of 3000 characters.</definition>
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="ResumeSearches" type="SearchesInformationType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">This is OUTBOUND only data providing resume search history information for the folder.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="folderId" type="xsd:string" />
+    <xsd:attribute name="folderAction" use="optional">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="add" />
+          <xsd:enumeration value="update" />
+          <xsd:enumeration value="updatePartial" />
+          <xsd:enumeration value="ignore" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="folderRefCode" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">The hiring organization's unique id for this Folder</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+          <datalength xmlns="http://schemas.monster.com/Monster">50</datalength>
+          <validation xmlns="http://schemas.monster.com/Monster">Not required</validation>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="toBeDeleted" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">Use this value if you want the job to be physically deleted from the Monster databases.</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Boolean</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="folderState">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">This outbound only value indicates the current state of the posting. The states are:
+					o open - indicates that the folder is in use and may have any combination of expired, active, purged, 
+					and pending postings
+					o purged - indicates that the folder is marked for removal from the database
+					</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Enumerated String</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="open" />
+          <xsd:enumeration value="purged" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="FolderAccesses">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">
+          <FolderRef /> can be omitted for folder "adds".
+For now, we will not support individual <Permission /> nodes. When we do, the monsterId will represent the resourceACL.
+The monsterId attribute in <Permissions /> represents the DACRoleId.
+If the <Permissions /> node is not present, fail.
+If the <Permissions /> node does not have an attribute, then DACRoleId is assummed to be NULL.
+If the <Permissions /> node does have an attribute, set the DACRoleId to the specified value. We should probably validate that the DACRoleId is valid - hopefully there's a proc for that.
+</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="FolderAccess">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:choice>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" ref="RecruiterReference">
+                  <xsd:annotation>
+                    <xsd:documentation>
+                      <definition>A recruiter specified here also has access to this folder. You need to specify the userId or the UserName. Monster can provide these values to you, if needed.</definition>
+                    </xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" name="Team">
+                  <xsd:annotation>
+                    <xsd:documentation>
+                      <definition>A refererence to an MOHQ "team"; a team specified here gives members of that team access to the folder in MOHQ. Specify the team name or the unique TeamID as the "monsterId". Monster can provide these values to you, if needed.</definition>
+                    </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                    <xsd:sequence>
+                      <xsd:element minOccurs="0" name="TeamName" type="xsd:string" />
+                    </xsd:sequence>
+                    <xsd:attribute name="monsterId" type="xsd:string" use="optional" />
+                  </xsd:complexType>
+                </xsd:element>
+              </xsd:choice>
+              <xsd:element minOccurs="0" ref="FolderReference" />
+              <xsd:element name="Permissions">
+                <xsd:complexType>
+                  <xsd:attribute name="monsterId" type="xsd:string" />
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobRequisitions" type="JobRequisitionsType" />
+  <xsd:complexType name="JobRequisitionsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="JobRequisition" type="JobRequisitionType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="JobRequisitionType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Replacement" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>0 - new position; 1 replacing an existing position</definition>
+            <datatype>Boolean</datatype>
+            <validation>Requisitions are not required to be a folder. If they are, however, this is a required field.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ReqTitle" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Requisition title</definition>
+            <datatype>Text</datatype>
+            <datalength>75</datalength>
+            <validation>Requisitions are not required to be a folder. If they are, however, this is a required field.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="JobReqDescription" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Complete description of the requisition</definition>
+            <datatype>Text</datatype>
+            <datalength>8000</datalength>
+            <validation>Requisitions are not required to be a folder. If they are, however, this is a required field.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Notes" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Notes pertaining to the requisition</definition>
+            <datatype>Text</datatype>
+            <datalength>255</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="GeographicPref" type="LocationType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Location of job in requisition. NOTE: A locationId must be used for companies using custom locations. Companies using standard Monster locations can specify the individual address fields.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SupervisorRecruiterReference" type="RecruiterReferenceType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>The recruiter selected as the Supervisor for this requisition. It's the same value specified in MOHQ in the "Supervisor" dropdown. Inbound, you need to specify the userId or the UserName. Monster can provide these values to you, if needed.</definition>
+            <validation>Required for inbound requisitions.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="CreatedByRecruiterReference" type="RecruiterReferenceType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>The recruiter that created the requisition; generally, the same as the recruiter on the Folder and the job. Inbound, you need to specify the userId or the UserName. Monster can provide these values to you, if needed.</definition>
+            <validation>Required for inbound requisitions.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="AssignedRecruiterReference" type="RecruiterReferenceType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>The recruiter assigned to this requisition. It's the same value specified in MOHQ in the "Recruiter" dropdown. Inbound, you need to specify the userId or the UserName. Monster can provide these values to you, if needed.</definition>
+            <validation>Required for inbound requisitions.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ExemptionStatus" type="ExemptionStatusEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>0 - Exempt; 1 - Non-exempt</definition>
+            <datatype>Boolean</datatype>
+            <validation>Requisitions are not required to be a folder. If they are, however, this is a required field.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SalaryDescription" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <datatype>Text</datatype>
+            <datalength>1000</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SalaryMin" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <datatype>Money</datatype>
+            <datalength>10 digits</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SalaryMax" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <datatype>Money</datatype>
+            <datalength>10 digits</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Currency" type="CurrencyType" />
+      <xsd:element minOccurs="0" name="SalaryType" type="CompensationTypeEnumStr" />
+      <xsd:element minOccurs="0" name="ReqStatuses" type="ReqStatusesType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>The history of the requisition's states</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="FilledRecruiterReference" type="RecruiterReferenceType" />
+      <xsd:element minOccurs="0" name="EEOCJobCategory" type="EEOCJobCategoryEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Indicates the EEOC job category for this requisition. This is the equivalent of the "EEO-1 Job Classification".</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Organization" type="LookupTableType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Indicates the organization for this requisition. See Monster for the values appropriate to your company.</definition>
+            <validation>Requisitions are not required to be a folder. If they are, however, this is a required field.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="ModifiedDate" />
+      <xsd:element minOccurs="0" name="CustomQuestions" type="CustomQuestionsType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="JobType" type="JobTypeEnumStr" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="JobStatus" type="JobStatusEnumStr" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="JobShift" type="JobShiftEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>
+							The shift of job such as 1st, 2nd, 3rd, rotating, etc. This field is supported outbound only.
+						</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ReqApprovalRounds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ReqApprovalRound" type="ReqApprovalRoundType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="UserOpenDate">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>
+							Defines the open date of the JobRequisition.
+						</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="CreatedDate">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>
+							Is not supported inbound. This date will be internally set to UserOpenDate or current Datetime if no UserOpenDate present.
+						</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="AffirmativeActionPlanJobGroup" type="StringWithIdType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Monster maintains a set of ids that relate to Affirmative Action Plan (AAP) Job Groups. Please contact your customer service representative for the list of ids.</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="jobRequisitionId" type="xsd:string" use="optional" />
+    <xsd:attribute name="reqRefCode" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition>Non-Monster text identifier of the requisition</definition>
+          <datatype>Text</datatype>
+          <datalength>25</datalength>
+          <validation>Requisitions are not required to be a folder. If they are, however, this is a required field.</validation>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="false" name="approvalRequired" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition>indicates if the requisition needs to be approved before becoming active</definition>
+          <datatype>Boolean</datatype>
+          <validation>Requisitions are not required to be a folder. If they are, however, this is a required field.</validation>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="jobRequisitionAction">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="add" />
+          <xsd:enumeration value="update" />
+          <xsd:enumeration value="updatePartial" />
+          <xsd:enumeration value="addOrUpdate" />
+          <xsd:enumeration value="ignore" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="ReqStatusesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="ReqStatus" type="ReqStatusType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Outbound, this provides the current Requisition Status along with a history of previous statuses. Inbound, it provides the current requisition status.</definition>
+            <datatype>Boolean</datatype>
+            <validation>One and only one ReqStatus with the state of current should be provided on an inbound requisition. More than one ReqStatus with a type of current will cause an error. Any inbound ReqStatuses that do not have a type of current will be ignored.</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ReqApprovalRoundType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition>Rounds required to be passed for the req to be approved</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:annotation>
+        <xsd:documentation>
+          <datatype>SmallDateTime</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:element minOccurs="0" name="ApprovalResult" type="ReqApprovalResultEnumStr" />
+      <xsd:element name="StartDate" type="DateTimeType" />
+      <xsd:element minOccurs="0" name="ReqApprovers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ReqApprover" type="ReqApproverType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="reqApprovalRoundId" type="xsd:string" />
+  </xsd:complexType>
+  <xsd:complexType name="ReqApproverType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition>Identify a recruiter that is an approver of a requisition</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ApproverReference" type="RecruiterReferenceType" />
+      <xsd:element minOccurs="0" name="EmailAddress" type="xsd:string" />
+      <xsd:element minOccurs="0" name="LastEmailSentDate" type="DateTimeType" />
+      <xsd:element minOccurs="0" name="RespondedDate" type="DateTimeType" />
+      <xsd:element minOccurs="0" name="ApprovalResponse" type="ReqApprovalResponseEnumStr" />
+      <xsd:element minOccurs="0" name="Comment" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Comments about the requisition and its approval worthiness</definition>
+            <datatype>Text</datatype>
+            <datalength>1000</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="ModifiedDate" />
+    </xsd:sequence>
+    <xsd:attribute name="reqApproverId" type="xsd:string" />
+  </xsd:complexType>
+  <xsd:complexType name="ReqStatusType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="MessageValue" type="StringWithOptionalIdType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition>Value stored in our database that is displayed for the user in the UI.</definition>
+            <datatype>Text</datatype>
+            <datalength>255</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DescriptionMessage" type="StringWithOptionalIdType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <datatype>Text</datatype>
+            <datalength>8000</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DateSet" type="xsd:string" />
+      <xsd:element minOccurs="0" name="NumberOfTimes" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <datatype>Int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="NumberOfDays" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <datatype>int</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="lookupTableId" type="xsd:string" />
+    <xsd:attribute default="false" name="display" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="type" use="optional">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="current" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="QuestionnairesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Questionnaire" type="QuestionnaireType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="FoldersResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="ProcessingReceipt" />
+        <xsd:element minOccurs="0" ref="FolderPreProcessResponse" />
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="FolderResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="FolderPreProcessResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="CompanyReference" />
+        <xsd:element name="SoapEnvId" type="xsd:string" />
+        <xsd:element ref="Status" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="FolderResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="JobRequisitionResponse" />
+        <xsd:element minOccurs="0" ref="JobResponse" />
+        <xsd:element minOccurs="0" ref="Status" />
+      </xsd:sequence>
+      <xsd:attribute name="folderId" type="xsd:int" />
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobRequisitionResponses" type="JobRequisitionResponsesType" />
+  <xsd:complexType name="JobRequisitionResponsesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobRequisitionResponse" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="JobRequisitionResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="FolderReference" />
+        <xsd:element minOccurs="0" ref="JobRequisitionReference" />
+        <xsd:element minOccurs="0" ref="CompanyReference" />
+        <xsd:element ref="Status" />
+      </xsd:sequence>
+      <xsd:attribute name="jobRequisitionAction" type="xsd:string" />
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetFolderByFolderID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="1" name="FolderID" type="xsd:int" />
+        <xsd:element minOccurs="0" maxOccurs="1" name="OutputFilter" type="FolderOutputFilterType" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetFolderResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Descriptions" />
+        <xsd:element ref="Folder" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="FolderOutputFilterType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IncludeJobApplicants" type="xsd:boolean" />
+      <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IncludeQuestionnaires" type="xsd:boolean" />
+      <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IncludeRequisitions" type="xsd:boolean" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="Security">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="UsernameToken" type="UsernameTokenType" />
+      </xsd:sequence>
+      <xsd:anyAttribute processContents="skip" />
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="UsernameTokenType">
+    <xsd:sequence>
+      <xsd:element name="Username" type="xsd:string" />
+      <xsd:element name="Password" type="PasswordType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PasswordType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="partyType" type="xsd:string" use="optional" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:schema>

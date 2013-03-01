@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:include schemaLocation="JobSeeker.xsd" />
+  <xsd:include schemaLocation="Job.xsd" />
+  <xsd:include schemaLocation="JobApplicants.xsd" />
+  <xsd:include schemaLocation="Folder.xsd" />
+  <xsd:include schemaLocation="Delete.xsd" />
+  <xsd:include schemaLocation="Query.xsd" />
+  <xsd:include schemaLocation="Company.xsd" />
+  <xsd:include schemaLocation="ApplicantScoring.xsd" />
+  <xsd:include schemaLocation="Lookup.xsd" />
+  <xsd:include schemaLocation="Inventory.xsd" />
+  <xsd:include schemaLocation="CandidateSearch.xsd" />
+  <xsd:include schemaLocation="Document.xsd" />
+  <xsd:include schemaLocation="Recruiter.xsd" />
+</xsd:schema>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="urn:statusrpt.soap.hireright.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:statusrpt.soap.hireright.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ResultStatus" type="xs:string" />
+  <xs:element name="CompanyRefId" type="xs:string" />
+  <xs:element name="CredentialStatusReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="CompanyRefId" />
+        <xs:element name="Status" type="xs:string" />
+        <xs:element name="StatusComments" type="xs:string" />
+      </xs:sequence>
+      <xs:attribute name="transactionId" type="xs:integer" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

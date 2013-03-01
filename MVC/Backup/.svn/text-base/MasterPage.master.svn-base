@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+    <script src='<%= Page.ResolveClientUrl("~/scripts/jquery-1.4.1.js") %>' type="text/javascript"></script>
+
+    <script src='<%= Page.ResolveClientUrl("~/scripts/jquery.validate1.js") %>' type="text/javascript"></script>
+
+    <script src='<%= Page.ResolveClientUrl("~/scripts/jquery.validate.message_cn.js") %>'
+        type="text/javascript"></script>
+
+    <script src='<%= Page.ResolveClientUrl("~/scripts/jquery.validate.vaidationgroup.js") %>'
+        type="text/javascript"></script>
+
+    <style type="text/css">
+        /************jQuery.Validate插件样式开始********************/label.error
+        {
+            background: url(images/error.png) no-repeat 0px 0px;
+            color: Red;
+            padding-left: 20px;
+        }
+        input.error
+        {
+            border: dashed 1px red;
+        }
+        /************jQuery.Validate插件样式结束********************/</style>
+
+    <script type="text/javascript">
+        var opts = null;
+        var isValidationGroup = false;
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery.validator.addMethod("telphoneValid", function(value, element) {
+                var tel = /^(130|131|132|133|134|135|136|137|138|139|150|153|157|158|159|180|187|188|189)\d{8}$/;
+                return tel.test(value) || this.optional(element);
+            }, "请输入正确的手机号码");
+            jQuery.validator.addMethod("zipCodeValid", function(value, element) {
+                var tel = /^\d{6}$/;
+                return tel.test(value) || this.optional(element);
+            }, "请输入正确的邮编");
+            jQuery.validator.addMethod("phoneValid", function(value, element) {
+                var tel = /^((\(0\d{2}\)[- ]?\d{8})|(0\d{2}[- ]?\d{8})|(\(0\d{3}\)[- ]?\d{8})|(0\d{3}[- ]?\d{8}))?$/;
+                return tel.test(value) || this.optional(element);
+            }, "请输入正确的电话号码");
+            if (isValidationGroup) {
+                if (opts != undefined || opts != null) {
+                    jQuery("#<%=form1.ClientID %>").validate(jQuery.extend(opts, { onsubmit: false }));
+                } else {
+                    jQuery("#<%=form1.ClientID %>").validate({
+                        onsubmit: false
+                    });
+                }
+                InitValidationGroup();
+            } else {
+                if (opts != undefined || opts != null) {
+                    jQuery("#<%=form1.ClientID %>").validate(opts);
+                } else {
+                    jQuery("#<%=form1.ClientID %>").validate();
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

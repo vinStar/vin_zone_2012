@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:monster="http://schemas.monster.com/Monster" xmlns:tns="http://www.monster.com/definitions" xmlns:cat="http://webservices.monster.com/MonsterPortal" xmlns:wssec2002a="http://schemas.xmlsoap.org/ws/2002/07/secext" xmlns:ns="urn:statusrpt.soap.hireright.com" xmlns:wssec2004="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:hrxml="http://ns.hr-xml.org/2006-02-28" xmlns:mh="http://schemas.monster.com/MonsterHeader" xmlns:wssec2002="http://schemas.xmlsoap.org/ws/2002/04/secext" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="MonsterBusinessGatewayService" targetNamespace="http://www.monster.com/definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/Monster.xsd" namespace="http://schemas.monster.com/Monster" />
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/MonsterHeader.xsd" namespace="http://schemas.monster.com/MonsterHeader" />
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/AuthenticateByCompanyAccessTicket.xsd" namespace="http://webservices.monster.com/MonsterPortal" />
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/ws-security.xsd" namespace="http://schemas.xmlsoap.org/ws/2002/04/secext" />
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/ws-security-2002-07.xsd" namespace="http://schemas.xmlsoap.org/ws/2002/07/secext" />
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/ws-security-2004-01.xsd" namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/MonsterStokenHeader.xsd" namespace="http://schemas.monster.com" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/HireRightReport.xsd" namespace="http://ns.hr-xml.org/2006-02-28" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://schemas.monster.com/current/xsd/HireRightStatus.xsd" namespace="urn:statusrpt.soap.hireright.com" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MonsterHeader">
+    <wsdl:part name="header" element="mh:MonsterHeader" />
+  </wsdl:message>
+  <wsdl:message name="CATHeader">
+    <wsdl:part name="header" element="cat:CompanyAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="WSSec2002">
+    <wsdl:part name="header" element="wssec2002:Security" />
+  </wsdl:message>
+  <wsdl:message name="WSSec2002a">
+    <wsdl:part name="header" element="wssec2002a:Security" />
+  </wsdl:message>
+  <wsdl:message name="WSSec2004">
+    <wsdl:part name="header" element="wssec2004:Security" />
+  </wsdl:message>
+  <wsdl:message name="AddOrUpdateSeekersIn">
+    <wsdl:part name="body" element="monster:JobSeekers" />
+  </wsdl:message>
+  <wsdl:message name="AddOrUpdateSeekerIn">
+    <wsdl:part name="body" element="monster:JobSeeker" />
+  </wsdl:message>
+  <wsdl:message name="AddOrUpdateSeekersOut">
+    <wsdl:part name="body" element="monster:JobSeekersResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateJobsIn">
+    <wsdl:part name="body" element="monster:Jobs" />
+  </wsdl:message>
+  <wsdl:message name="UpdateJobIn">
+    <wsdl:part name="body" element="monster:Job" />
+  </wsdl:message>
+  <wsdl:message name="UpdateJobsOut">
+    <wsdl:part name="body" element="monster:JobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="FoldersIn">
+    <wsdl:part name="body" element="monster:Folders" />
+  </wsdl:message>
+  <wsdl:message name="FolderIn">
+    <wsdl:part name="body" element="monster:Folder" />
+  </wsdl:message>
+  <wsdl:message name="FoldersOut">
+    <wsdl:part name="body" element="monster:FoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueriesIn">
+    <wsdl:part name="body" element="monster:Queries" />
+  </wsdl:message>
+  <wsdl:message name="QueryIn">
+    <wsdl:part name="body" element="monster:Query" />
+  </wsdl:message>
+  <wsdl:message name="QueriesOut">
+    <wsdl:part name="body" element="monster:QueriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletesIn">
+    <wsdl:part name="body" element="monster:Deletes" />
+  </wsdl:message>
+  <wsdl:message name="DeleteIn">
+    <wsdl:part name="body" element="monster:Delete" />
+  </wsdl:message>
+  <wsdl:message name="DeletesOut">
+    <wsdl:part name="body" element="monster:DeletesResponse" />
+  </wsdl:message>
+  <wsdl:message name="JobApplicantScoringsIn">
+    <wsdl:part name="body" element="monster:JobApplicantScorings" />
+  </wsdl:message>
+  <wsdl:message name="JobApplicantScoringIn">
+    <wsdl:part name="body" element="monster:JobApplicantScoring" />
+  </wsdl:message>
+  <wsdl:message name="JobApplicantScoringsOut">
+    <wsdl:part name="body" element="monster:JobsApplicantScoringsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InventoriesQueryIn">
+    <wsdl:part name="body" element="monster:InventoriesQuery" />
+  </wsdl:message>
+  <wsdl:message name="InventoriesQueryOut">
+    <wsdl:part name="body" element="monster:InventoriesQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentQueryIn">
+    <wsdl:part name="body" element="monster:DocumentQuery" />
+  </wsdl:message>
+  <wsdl:message name="DocumentQueryOut">
+    <wsdl:part name="body" element="monster:DocumentQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveStatusReportRequest">
+    <wsdl:part name="body" element="hrxml:BackgroundReports" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveStatusReportResponse">
+    <wsdl:part name="body" element="ns:ResultStatus" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveStatusCredentialReportRequest">
+    <wsdl:part name="body" element="ns:CredentialStatusReport" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveStatusCredentialReportResponse">
+    <wsdl:part name="body" element="ns:ResultStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSeekerAndDocumentByTextResumeIDIn">
+    <wsdl:part name="body" element="monster:GetJobSeekerAndDocumentByTextResumeID" />
+  </wsdl:message>
+  <wsdl:message name="GetJobSeekerAndDocumentByTextResumeIDResponseOut">
+    <wsdl:part name="body" element="monster:GetJobSeekerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateJobApplicantRoundIDByTextResumeIDAndJobIDIn">
+    <wsdl:part name="body" element="monster:UpdateJobApplicantRoundIDByTextResumeIDAndJobID" />
+  </wsdl:message>
+  <wsdl:message name="UpdateJobApplicantRoundIDByTextResumeIDAndJobIDOut">
+    <wsdl:part name="body" element="monster:UpdateJobApplicantRoundIDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BusinessGatewayInterface">
+    <wsdl:operation name="AddOrUpdateSeekers">
+      <wsdl:input message="tns:AddOrUpdateSeekersIn" />
+      <wsdl:output message="tns:AddOrUpdateSeekersOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOrUpdateSeeker">
+      <wsdl:input message="tns:AddOrUpdateSeekerIn" />
+      <wsdl:output message="tns:AddOrUpdateSeekersOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobs">
+      <wsdl:input message="tns:UpdateJobsIn" />
+      <wsdl:output message="tns:UpdateJobsOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJob">
+      <wsdl:input message="tns:UpdateJobIn" />
+      <wsdl:output message="tns:UpdateJobsOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolders">
+      <wsdl:input message="tns:FoldersIn" />
+      <wsdl:output message="tns:FoldersOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolder">
+      <wsdl:input message="tns:FolderIn" />
+      <wsdl:output message="tns:FoldersOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQueries">
+      <wsdl:input message="tns:QueriesIn" />
+      <wsdl:output message="tns:QueriesOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQuery">
+      <wsdl:input message="tns:QueryIn" />
+      <wsdl:output message="tns:QueriesOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDeletes">
+      <wsdl:input message="tns:DeletesIn" />
+      <wsdl:output message="tns:DeletesOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDelete">
+      <wsdl:input message="tns:DeleteIn" />
+      <wsdl:output message="tns:DeletesOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobApplicantScorings">
+      <wsdl:input message="tns:JobApplicantScoringsIn" />
+      <wsdl:output message="tns:JobApplicantScoringsOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobApplicantScoring">
+      <wsdl:input message="tns:JobApplicantScoringIn" />
+      <wsdl:output message="tns:JobApplicantScoringsOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InventoriesQuery">
+      <wsdl:input message="tns:InventoriesQueryIn" />
+      <wsdl:output message="tns:InventoriesQueryOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveStatusReport">
+      <wsdl:input message="tns:ReceiveStatusReportRequest" />
+      <wsdl:output message="tns:ReceiveStatusReportResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveStatusCredentialReport">
+      <wsdl:input message="tns:ReceiveStatusCredentialReportRequest" />
+      <wsdl:output message="tns:ReceiveStatusCredentialReportResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentQuery">
+      <wsdl:input message="tns:DocumentQueryIn" />
+      <wsdl:output message="tns:DocumentQueryOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSeekerAndDocumentByTextResumeID">
+      <wsdl:input message="tns:GetJobSeekerAndDocumentByTextResumeIDIn" />
+      <wsdl:output message="tns:GetJobSeekerAndDocumentByTextResumeIDResponseOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobApplicantRoundIDByTextResumeIDAndJobID">
+      <wsdl:input message="tns:UpdateJobApplicantRoundIDByTextResumeIDAndJobIDIn" />
+      <wsdl:output message="tns:UpdateJobApplicantRoundIDByTextResumeIDAndJobIDOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BusinessGatewayImpl" type="tns:BusinessGatewayInterface">
+    <soapbind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddOrUpdateSeekers">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOrUpdateSeeker">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobs">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJob">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolders">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolder">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQueries">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQuery">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDeletes">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDelete">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobApplicantScorings">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobApplicantScoring">
+      <soapbind:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InventoriesQuery">
+      <soapbind:operation soapAction="http://schemas.monster.com/Monster/InventoriesQuery" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveStatusReport">
+      <soapbind:operation soapAction="ReceiveStatusReport" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveStatusCredentialReport">
+      <soapbind:operation soapAction="ReceiveStatusCredentialReport" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentQuery">
+      <soapbind:operation soapAction="http://schemas.monster.com/Monster/DocumentQuery" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobSeekerAndDocumentByTextResumeID">
+      <soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/GetJobSeekerAndDocumentByTextResumeID" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJobApplicantRoundIDByTextResumeIDAndJobID">
+      <soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobApplicantsInterface/UpdateJobApplicantRoundIDByTextResumeIDAndJobID" style="document" />
+      <wsdl:input>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+        <soapbind:header message="tns:CATHeader" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2002a" part="header" use="literal" />
+        <soapbind:header message="tns:WSSec2004" part="header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soapbind:body use="literal" parts="body" />
+        <soapbind:header message="tns:MonsterHeader" part="header" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MonsterBusinessGatewayService">
+    <documentation />
+    <wsdl:port name="BusinessGatewayEndpoint" binding="tns:BusinessGatewayImpl">
+      <soapbind:address location="https://gateway.monster.com:8443/bgwBroker" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

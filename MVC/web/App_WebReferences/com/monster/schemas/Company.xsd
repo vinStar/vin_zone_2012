@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" xmlns:msxsl="urn:schemas-microsoft-com:xslt" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:element name="Companies">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="Company" />
+      </xsd:sequence>
+      <xsd:attribute name="supressSuccess" type="xsd:boolean" />
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Companys">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="Company" />
+      </xsd:sequence>
+      <xsd:attribute name="supressSuccess" type="xsd:boolean" />
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Company">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="CompanyName">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">The Company's Name</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+              <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="AlphaIndex">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">The name of the Company as used for sorting.  Example: CompanyName = The Acme Corp, AlphaIndex = Acme Corp, The</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+              <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="CompanyNameShort">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">The short name of the Company.  Example: CompanyName = The Acme Corp, CompanyShortName = Acme</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+              <datalength xmlns="http://schemas.monster.com/Monster">30</datalength>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="HasProfile">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Indicates if a Company Profile exists on Monster</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">bit</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="CorporateURL">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">The URL for the Company</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+              <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="ApplyOnline">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Indicates if the Company has Apply Online functionality enabled</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Bit</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="ApplyOnlineURL">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">The override Apply Online URL for the Company</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+              <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="AdAgency">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Is the company an Ad Agency, posting jobs as other companies?</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Bit</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="ThirdPartyRecruiter">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Is the company an third part recruiter, posting jobs for other companies?</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Bit</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="CompanyDates">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Dates related to the Company's creation and modification</definition>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="CompanyIndustry">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">This is a Trak Industry Code that is no longer populated on the site. This is kept around for backwards compatability</definition>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="CompanyDescription">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">This is a Trak Industry Code Description that is no longer populated on the site. This is kept around for backwards compatability</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+              <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="CompanyAttributes" />
+        <xsd:element minOccurs="0" ref="IsCustomApplyNonMonster">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Used to determine if the custom apply online URL sent staying on-platform on Monster (CSH site) or whether the URL is going off-platform.  1 = its off-platform 0 - its on platform</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">boolean</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CompanyMonsterIndustry" type="CompanyMonsterIndustryType">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">This is a Monster Industry Code used for internal migrations only</definition>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CompanyProperties" type="PropertiesType" />
+        <xsd:element minOccurs="0" ref="CompanySize" />
+        <xsd:element minOccurs="0" name="ContactInfo" type="CompanyContactType" />
+        <xsd:element minOccurs="0" name="TradingName" type="xsd:string" />
+      </xsd:sequence>
+      <xsd:attribute name="companyID" type="xsd:integer" />
+      <xsd:attribute name="companyXCODE">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="20" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="parentCompanyID" type="xsd:integer" use="optional" />
+      <xsd:attribute name="companyAction" use="optional">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="add" />
+            <xsd:enumeration value="update" />
+            <xsd:enumeration value="addOrUpdate" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AlphaIndex">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="255" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:element>
+  <xsd:element name="CompanyNameShort">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="30" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:element>
+  <xsd:element name="CompanySize" type="KarmaCompanySizesEnumStr">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">Indicates the size of the company. Used for Migrations only.</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="HasProfile" type="xsd:boolean" />
+  <xsd:element name="CorporateURL">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="255" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:element>
+  <xsd:element name="ApplyOnline" type="xsd:boolean" />
+  <xsd:element name="ApplyOnlineURL">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="255" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:element>
+  <xsd:element name="AdAgency" type="xsd:boolean" />
+  <xsd:element name="ThirdPartyRecruiter" type="xsd:boolean" />
+  <xsd:element name="CompanyDates">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="DateCreated">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">The date the Company was created on Monster</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">smalldatetime</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="DateModified">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">The date the Company was last modified on Monster</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">smalldatetime</datatype>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CompanyIndustry" type="TRAKIndustryCodeEnumStr">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">This is a Trak Industry Code that is no longer populated on the site. This is kept around for backwards compatability</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="CompanyAttributes">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="CompanyAttribute" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CompanyAttribute">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute name="monsterId" type="xsd:string" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CompanyDescription" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">This is a Trak Industry Code Description that is no longer populated on the site. This is kept around for backwards compatability</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="IsCustomApplyNonMonster" type="xsd:boolean" />
+  <xsd:element name="DateCreated" type="xsd:dateTime" />
+  <xsd:element name="DateModified" type="xsd:dateTime" />
+  <xsd:element name="CompaniesResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="CompanyResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CompanyResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="CompanyReference" type="CompanyReferenceType" />
+        <xsd:element name="Status" type="StatusType" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="CompanyMonsterIndustryType">
+    <xsd:sequence>
+      <xsd:element name="MonsterIndustry" type="MonsterIndustriesEnumStr" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetCompanyResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Descriptions" />
+        <xsd:element ref="Companies" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GetCompanyByCompanyID">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="CompanyID" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CompanyID" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">CompanyID of company</definition>
+        <datatype xmlns="http://schemas.monster.com/Monster">String</datatype>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

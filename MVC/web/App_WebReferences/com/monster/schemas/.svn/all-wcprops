@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas
+END
+MonsterStokenHeader.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/MonsterStokenHeader.xsd
+END
+AuthenticateByCompanyAccessTicket.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/AuthenticateByCompanyAccessTicket.xsd
+END
+Monster.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Monster.xsd
+END
+Common.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Common.xsd
+END
+JobApplicants.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/JobApplicants.xsd
+END
+HireRightStatus.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/HireRightStatus.xsd
+END
+Inventory.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Inventory.xsd
+END
+ws-security.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/ws-security.xsd
+END
+ws-security-2004-01.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/ws-security-2004-01.xsd
+END
+ApplicantScoring.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/ApplicantScoring.xsd
+END
+MonsterHeader.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/MonsterHeader.xsd
+END
+Delete.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Delete.xsd
+END
+CandidateSearch.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/CandidateSearch.xsd
+END
+ws-security-2002-07.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/ws-security-2002-07.xsd
+END
+Recruiter.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Recruiter.xsd
+END
+Query.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Query.xsd
+END
+Company.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Company.xsd
+END
+MonsterBusinessGatewayService.discomap
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/MonsterBusinessGatewayService.discomap
+END
+Enumerations.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Enumerations.xsd
+END
+JobSeeker.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/JobSeeker.xsd
+END
+Lookup.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Lookup.xsd
+END
+Job.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Job.xsd
+END
+Folder.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Folder.xsd
+END
+Document.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/Document.xsd
+END
+JobSearchAgent.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/JobSearchAgent.xsd
+END
+HireRightReport.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/HireRightReport.xsd
+END
+MonsterBusinessGatewayService.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/20/%20vin-jquery-validate/web/App_WebReferences/com/monster/schemas/MonsterBusinessGatewayService.wsdl
+END

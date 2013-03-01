@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:element name="Queries">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" ref="Query" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Query">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Target" type="xsd:string" />
+        <xsd:element minOccurs="0" name="SubTarget" type="xsd:string" />
+        <xsd:element minOccurs="0" name="ResumeRestriction" />
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="ReturnRestriction">
+          <xsd:annotation>
+            <xsd:documentation>The ReturnRestriction element specifies a subset of the Target. For example, a JobSeeker includes User and Resumes. Restriction can be used to only return User for example.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:any maxOccurs="unbounded" namespace="##any" processContents="strict" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="SelectBy">
+          <xsd:annotation>
+            <xsd:documentation>The SelectBy element defines the criteria by which the Target 
+						object(s) should be returned.
+						The Criteria/Value pairs have been loosely defined to accomodate AXIS.
+						A correctly formulated request includes an equal number of Criteria
+						and Value elements. The Criteria and Value elements are matched up by
+						the order of their appearance, ie the first Criteria is paired with
+						the first Value element.
+						</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:choice maxOccurs="unbounded">
+                <xsd:element name="Criteria" type="xsd:string" />
+                <xsd:element name="Value" type="xsd:string" />
+              </xsd:choice>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobApplicantRestriction">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="ExcludeAppointments" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="ExcludeATSJournals" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="ExcludeEvaluations" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="ExcludeFAOffers" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="ExcludeFAQuestionImps" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="ExcludeLetters" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="ExcludeResumeNotes" type="xsd:boolean" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ResumeRestriction">
+    <xsd:annotation>
+      <xsd:documentation>The ResumeRestriction element defines the further refinement to the Target returned. Target object(s) should be returned.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="StoreRenderedTextResume" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>The StoreRenderedTextResume element defines thae further refinement of the JobPositionSeeker If it is set to 1 then the resume rendered as text is returned in TextOrNonXMLResume/TextResume. The default behavior is not to do this. A value of 0 will not perform this action</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="DoNotRenderSid" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>The DoNotRenderSid element defines the further refinement of the JobPositionSeeker. If it is set to 1 or true then the resume is rendered without the Sid. The default behavior is to render Sid. A value of 0 or false will render the Sid</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="ActiveOnBoard">
+          <xsd:annotation>
+            <xsd:documentation>The ActiveOnBoard element defines thae further refinement of the JobPositionSeeker. If it is included then the Resume section is returned only if the resume is active on one of the boards specified. The default behavior is not to do this.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element maxOccurs="unbounded" name="BoardId" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation>This holds the Resume board id that the resume must be active on.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="FolderRestriction">
+    <xsd:annotation>
+      <xsd:documentation>The FolderRestriction element defines the further refinement to the Target returned. Target object(s) should be returned.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="ExcludeFolderApplicants" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>Exclude Folder Applicants from Folder export; true - Exclude, false - Include</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ExcludeQuestionnaires" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>Exclude Questionnaires from Folder export; true - Exclude, false - Include</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ExcludeRequisitions" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>Exclude Job Requisitions from Folder export; true - Exclude, false - Include</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ExcludeInactiveJobs" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>Exclude Expired or Deleted Jobs from Folder export; true - Exclude, false - Include</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ExcludeAccesses" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation>Exclude FolderAccesses from Folder export; true - Exclude, false - Include</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="QueriesResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:annotation>
+          <xsd:documentation>The first element will be a Processing
+					Receipt. Specifying this directly causes .NET to fail
+					on generation from wsdl/xsd.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##any" processContents="strict" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="QueryErrorResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="QueryRequest">
+          <xsd:complexType mixed="true">
+            <xsd:sequence>
+              <xsd:annotation>
+                <xsd:documentation>The incoming query.</xsd:documentation>
+              </xsd:annotation>
+              <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##any" processContents="lax" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="Status" type="StatusType" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="http://schemas.monster.com/current/xsd/Job.xsd" />
+  <xsd:element name="EmployerCandidateSearch" type="CandidateSearchType" />
+  <xsd:element name="TrovixCandidateSearch" type="TrovixCandidateSearchType" />
+  <xsd:complexType name="TrovixCandidateSearchType">
+    <xsd:sequence>
+      <xsd:element name="EmployerCandidateSearch" type="CandidateSearchType" />
+      <xsd:element minOccurs="0" ref="Job" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CandidateSearchType">
+    <xsd:sequence>
+      <xsd:element name="SearchReference" type="SearchReferenceType" />
+      <xsd:element name="NumSearchResultsDesired" type="xsd:int" />
+      <xsd:element name="SearchCriteria" type="SearchCriteriaType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SearchReferenceType">
+    <xsd:attribute name="monsterId" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="SearchCriteriaType">
+    <xsd:annotation>
+      <xsd:documentation>Holds the set of search criteria for the candidate search</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="SearchDateRange" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Trovix date range used to control the set of candidates to search. Default is all candidates are searched</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="SearchTitles" type="SearchTitlesType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The set of titles to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="SearchLocations" type="SearchLocationsType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The set of locations to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="SkillKeywords" type="SkillKeywordsType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The set of skill/keywords to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="YearsOfExperience" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">total years of experience to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Schools" type="SchoolsType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The set of schools to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="EducationLevels" type="EducationLevelsType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Education Level criteria to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Corporation" type="CorporationType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Corporation criteria to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="JobDescription" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The Job description to use to drive the search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CorporationType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="CorporationName" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Company Name  to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EducationLevelsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Degree" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">School Degree to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SchoolsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="SchoolNames" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">School Names to search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SkillKeywordsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="SkillKeyword" type="SkillKeywordType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SkillKeywordType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="context" type="xsd:string" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="SearchTitlesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="SearchTitle" type="SearchTitleType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SearchTitleType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="context" type="xsd:string" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="SearchLocationsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="SearchLocation" type="SearchLocationType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SearchLocationType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="locationId" type="xsd:string" />
+        <xsd:attribute name="locationRadius" type="xsd:string" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="EmployerCandidateSearchExceptionType">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="TrovixCandidateSearchExceptionType">
+    <xsd:sequence />
+  </xsd:complexType>
+</xsd:schema>

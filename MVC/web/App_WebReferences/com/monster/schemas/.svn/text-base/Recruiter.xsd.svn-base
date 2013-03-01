@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" xmlns:msxsl="urn:schemas-microsoft-com:xslt" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:element name="Recruiters">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="Recruiter" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Recruiter">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="Channel">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">Internal Monster value</definition>
+              <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+              <datalength xmlns="http://schemas.monster.com/Monster">255</datalength>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CompanyReference" type="CompanyReferenceType">
+          <xsd:annotation>
+            <xsd:documentation>
+              <definition xmlns="http://schemas.monster.com/Monster">CompanyReference is here to associate a JobSeeker with a Private Label.</definition>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="Contact" type="CompanyContactType" />
+        <xsd:element name="Account" type="RecruiterAccountType" />
+        <xsd:element name="Profile" type="RecruiterProfileType" />
+        <xsd:element minOccurs="0" name="ResumeSearchAgents" type="ResumeSearchAgentsType" />
+        <xsd:element minOccurs="0" name="RecruiterProperties" type="PropertiesType" />
+        <xsd:element minOccurs="0" name="BillingInformation" type="CompanyContactType" />
+      </xsd:sequence>
+      <xsd:attribute name="recruiterAction" type="RecruiterActionType" />
+      <xsd:attribute name="companyId" type="xsd:string" />
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="RecruiterAccountType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Username" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">username to access Monster</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">20</datalength>
+            <validation xmlns="http://schemas.monster.com/Monster">Required if seekerScope="normal" and the seekerId is missing</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Password" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">password used to access Monster</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">20</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="PasswordHint" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">password hint used to get password</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">50</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="NickName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">nickname used to access certain Monster functionality</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">50</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ForgotPasswordQuestionAnswer" type="ForgotPasswordQuestionAnswerType" />
+      <xsd:element minOccurs="0" name="MaxRecruiterAgents" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">controls the max number of recruiter agents for the recruiter</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">integer</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Disabled" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates that the Recruiter Accountshould be disabled</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="AccountExpiredDate" type="DateType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ForgotPasswordQuestionAnswerType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Answer" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The Answer to the forgot password question Id</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">100</datalength>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="forgotPasswordQuestionId" type="xsd:string" />
+  </xsd:complexType>
+  <xsd:complexType name="RecruiterProfileType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="JobFunction" type="JobFunctionEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the Job function of the Recruiter</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="InternetProficiency" type="SkillLevelEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the Internet Proficiency of the Recruiter</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ContactPreference" type="ContactPreferenceEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the Contact Preference of the Recruiter</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="UserRoles" type="UserRolesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UserRolesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="UserRole" type="UserRoleType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UserRoleType">
+    <xsd:sequence>
+      <xsd:element name="Role" type="StringWithIdType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the Role</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResumeSearchAgentsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="ResumeSearchAgent" type="ResumeSearchAgentType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResumeSearchAgentType">
+    <xsd:sequence>
+      <xsd:element name="AgentName" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The name of the resume search agent</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="NotificationEmailAddress" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the email address to use for notification</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="DateCreated" type="DateType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the date the agent was created</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="NotificationPeriodInMinutes" type="ResumeSearchAgentNotificationPeriodMinutesEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the interval to send the agent results </definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="QueryString" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the RSX query string to execute for the resume search</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ResumeSearchAgentStatus" type="ResumeSearchAgentStatusesEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the status of the search agent</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RecruiterResponses">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="RecruiterResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RecruiterResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="RecruiterReference" type="RecruiterReferenceType" />
+        <xsd:element name="Status" type="StatusType" />
+      </xsd:sequence>
+      <xsd:attribute name="recruiterAction" type="RecruiterActionType" />
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

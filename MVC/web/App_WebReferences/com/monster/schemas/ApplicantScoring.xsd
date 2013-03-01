@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:element name="JobApplicantScorings">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobApplicantScoring" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobApplicantScoring" type="JobApplicantScoringType" />
+  <xsd:complexType name="JobApplicantScoringType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="AppPriority" type="AppPriorityEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The priority that the applicant is ranked.</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">25</datalength>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="Round" type="StringWithOptionalIdType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <defintion xmlns="http://schemas.monster.com/Monster">The round that the applicant is currently in</defintion>
+            <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+            <datalength xmlns="http://schemas.monster.com/Monster">25</datalength>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ResumeNotes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="ResumeNote">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="NoteType" type="xsd:string">
+                    <xsd:annotation>
+                      <xsd:documentation>
+                        <definition xmlns="http://schemas.monster.com/Monster">Indicates if the note is private (0) or public (1).</definition>
+                        <datatype xmlns="http://schemas.monster.com/Monster">Int</datatype>
+                      </xsd:documentation>
+                    </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="NoteTitle" type="xsd:string">
+                    <xsd:annotation>
+                      <xsd:documentation>
+                        <definition xmlns="http://schemas.monster.com/Monster">Title for the note</definition>
+                        <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+                        <datalength xmlns="http://schemas.monster.com/Monster">50</datalength>
+                      </xsd:documentation>
+                    </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="NoteBody" type="xsd:string">
+                    <xsd:annotation>
+                      <xsd:documentation>
+                        <definition xmlns="http://schemas.monster.com/Monster">Body of the note.</definition>
+                        <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+                        <datalength xmlns="http://schemas.monster.com/Monster">7000</datalength>
+                      </xsd:documentation>
+                    </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="DateEntered" type="xsd:string" />
+                  <xsd:element minOccurs="0" name="DateReminder" type="xsd:string" />
+                  <xsd:element ref="UserReference">
+                    <xsd:annotation>
+                      <xsd:documentation>
+                        <definition xmlns="http://schemas.monster.com/Monster">User that created the note</definition>
+                      </xsd:documentation>
+                    </xsd:annotation>
+                  </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="resumeNoteId" type="xsd:string" />
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="jobApplicantId" type="xsd:string" use="optional" />
+    <xsd:attribute name="textResumeId" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          <definition xmlns="http://schemas.monster.com/Monster">The monster unique string identifier for the resume</definition>
+          <datatype xmlns="http://schemas.monster.com/Monster">Text</datatype>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="jobPostingId" type="xsd:string" use="optional" />
+  </xsd:complexType>
+  <xsd:element name="JobsApplicantScoringsResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="JobsApplicantScoringsPreProcessResponse" />
+        <xsd:element ref="JobApplicantScoringsResponse" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobsApplicantScoringsPreProcessResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="CompanyReference" />
+        <xsd:element name="SoapEnvId" type="xsd:string" />
+        <xsd:element ref="Status" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobApplicantScoringsResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="Status" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

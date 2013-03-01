@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:complexType name="JobSearchAgentsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="JobSearchAgent" type="JobSearchAgentType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="JobSearchAgentType">
+    <xsd:sequence>
+      <xsd:element name="AgentName" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The name of the job search agent</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="Channel">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Specifies the internal monster channel for the job search agent. Defaults to channel of the jobseeker</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Expired" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates whether  the Job Search Agent is expired</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="EmailFrequencyDays" type="JobSearchAgentEmailFrequencyDaysEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the frequency in days to email results </definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="AgentType" type="JobSearchAgentTypesEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the type of the job search agent</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" ref="SearchAttributes" />
+      <xsd:element minOccurs="0" ref="CreatedDate" />
+      <xsd:element minOccurs="0" ref="ModifiedDate" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SearchAttributes">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="SearchString" />
+        <xsd:element ref="BoardIds" />
+        <xsd:element minOccurs="0" ref="EducationAreaOfStudyId" />
+        <xsd:element minOccurs="0" ref="JobCategoryIds" />
+        <xsd:element minOccurs="0" ref="JobLocationIds" />
+        <xsd:element minOccurs="0" ref="JobStatusIds" />
+        <xsd:element minOccurs="0" ref="JobTypeIds" />
+        <xsd:element minOccurs="0" ref="UserLanguageIds" />
+        <xsd:element minOccurs="0" ref="KeywordSearchFlags" />
+        <xsd:element minOccurs="0" ref="Radius" />
+        <xsd:element minOccurs="0" ref="StateId" />
+        <xsd:element minOccurs="0" ref="YearsOfExperience" />
+        <xsd:element minOccurs="0" ref="CareerLevel" />
+        <xsd:element minOccurs="0" ref="EducationLevel" />
+        <xsd:element minOccurs="0" ref="CompanyNames" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="CompanyNames">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="CompanyName" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="EducationLevel" type="EducationDegreeEnumStr">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">the monster education level</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="CareerLevel" type="CareerLevelEnumStr">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">the monster career level</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="YearsOfExperience" type="YearsOfExperienceEnumStr">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">the monster years of experience</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="StateId" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">the monster stateId</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="Radius" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <definition xmlns="http://schemas.monster.com/Monster">the radius in miles</definition>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="KeywordSearchFlags">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="KeywordSearchFlag" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="KeywordSearchFlag" type="xsd:string" />
+  <xsd:element name="JobCategoryIds">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobCategoryId" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobCategoryId" type="xsd:string" />
+  <xsd:element name="JobLocationIds">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobLocationId" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobLocationId" type="xsd:string" />
+  <xsd:element name="SearchString" type="xsd:string" />
+  <xsd:element name="JobTypeIds">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobTypeId" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobTypeId" type="JobTypeEnumStr" />
+  <xsd:element name="JobStatusIds">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="JobStatusId" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="JobStatusId" type="JobStatusEnumStr" />
+  <xsd:element name="BoardIds">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="BoardId" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="BoardId" type="xsd:string" />
+  <xsd:element name="SalarayRangeId" type="xsd:string" />
+  <xsd:element name="EducationAreaOfStudyId" type="xsd:string" />
+  <xsd:element name="UserLanguageIds">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="UserLanguageId" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="UserLanguageId" type="xsd:string" />
+</xsd:schema>

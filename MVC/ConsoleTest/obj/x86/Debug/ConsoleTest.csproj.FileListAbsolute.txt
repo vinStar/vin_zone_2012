@@ -1,0 +1,5 @@
+D:\Demo\jQueryValidate\ConsoleTest\bin\Debug\ConsoleTest.exe
+D:\Demo\jQueryValidate\ConsoleTest\bin\Debug\ConsoleTest.pdb
+D:\Demo\jQueryValidate\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Demo\jQueryValidate\ConsoleTest\obj\x86\Debug\ConsoleTest.exe
+D:\Demo\jQueryValidate\ConsoleTest\obj\x86\Debug\ConsoleTest.pdb

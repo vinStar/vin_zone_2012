@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com/Monster" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com/Monster" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Common.xsd" />
+  <xsd:include schemaLocation="Enumerations.xsd" />
+  <xsd:complexType name="QuantityType">
+    <xsd:sequence>
+      <xsd:element name="TotalPurchased" type="xsd:string" />
+      <xsd:element name="TotalAvailable" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="isUnlimited" type="xsd:boolean" />
+  </xsd:complexType>
+  <xsd:complexType name="ResourceLicenseType">
+    <xsd:sequence>
+      <xsd:element name="ResourceAclID" type="InventoryTypeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the Resource AclId which identifies the class of license</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ResourceLicenseTypeID" type="ResourceLicenseTypeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the license usage type</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InventoryDatesType">
+    <xsd:annotation>
+      <xsd:documentation>Holds the dateactive/dateexpires for an inventory</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="InventoryActiveDate" type="DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The date that this inventory was made active</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">DateTime</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="InventoryExpireDate" type="DateTimeType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">The date that this inventory was expired (made inactive)</definition>
+            <datatype xmlns="http://schemas.monster.com/Monster">DateTime</datatype>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InventoryType">
+    <xsd:sequence>
+      <xsd:element name="ResourceLicenseInfo" type="ResourceLicenseType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Information that describes the license</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Quantity" type="QuantityType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates Quantity associated with the Inventory</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="InventoryDates" type="InventoryDatesType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Dates  associated with the Inventory</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="CompanyReference" type="CompanyReferenceType" />
+      <xsd:element name="InventoryAttrs" type="InventoryAttrsType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the set of InventoryAttrs that define the Inventory Rollup</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DisplayName" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Messagized dsiplay name for the inventory</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="monsterId" type="xsd:string" use="optional" />
+  </xsd:complexType>
+  <xsd:complexType name="InventoriesType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Inventory" type="InventoryType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Inventories" type="InventoriesType" />
+  <xsd:complexType name="InventoryAttrNumericValueType">
+    <xsd:sequence>
+      <xsd:element name="Value" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates value associated with the Numeric</definition>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the name of the value. Not all Values have a corresponding name</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InventoryAttrValueType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Numeric1" type="InventoryAttrNumericValueType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the 1st numericId value associated with the inventory attribute</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Numeric2" type="InventoryAttrNumericValueType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the 2nd numericId value associated with the inventory attribute</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Numeric3" type="InventoryAttrNumericValueType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the 3rd numericId value associated with the inventory attribute</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Numeric4" type="InventoryAttrNumericValueType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the 4th numericId value associated with the inventory attribute</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="Alpha" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the alpha value associated with the inventory attribute</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InventoryAttrType">
+    <xsd:sequence>
+      <xsd:element name="AttrTypeId" type="InventoryAttrTypeEnumStr">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates Quantity associated with the Inventory</definition>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="AttrValue" type="InventoryAttrValueType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates values assocaited with Inventory Attribute</definition>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InventoryAttrsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="InventoryAttr" type="InventoryAttrType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InventoryRollupType">
+    <xsd:sequence>
+      <xsd:element name="Quantity" type="QuantityType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates Quantity associated with the Rollup</definition>
+            <validation xmlns="http://schemas.monster.com/Monster">Required</validation>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="InventoryAttrs" type="InventoryAttrsType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Indicates the set of InventoryAttrs that define the Inventory Rollup</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Inventories" type="InventoriesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InventoryRollupsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="InventoryRollup" type="InventoryRollupType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="InventoryRollups" type="InventoryRollupsType" />
+  <xsd:complexType name="InventoryRollupsQueryType">
+    <xsd:sequence>
+      <xsd:element name="LicenseFilter" type="LicenseFilterEnumStr" />
+      <xsd:element name="LicenseType" type="LicenseTypeEnumStr" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="InventoryRollupsQuery" type="InventoryRollupsQueryType" />
+  <xsd:complexType name="InventoryRollupsQueryResponseType">
+    <xsd:sequence>
+      <xsd:element name="InventoryRollups" type="InventoryRollupsType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="InventoryRollupsQueryResponse" type="InventoryRollupsQueryResponseType" />
+  <xsd:complexType name="InventoriesQueryType">
+    <xsd:sequence>
+      <xsd:element name="LicenseFilter" type="LicenseFilterEnumStr" />
+      <xsd:element name="LicenseType" type="LicenseTypeEnumStr" />
+      <xsd:element minOccurs="0" name="ChannelLanguage" type="ChannelType">
+        <xsd:annotation>
+          <xsd:documentation>
+            <definition xmlns="http://schemas.monster.com/Monster">Represents the set of channels that define language. The code treats it as a channel. Its advertised to consumers as a list of language ids</definition>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="InventoriesQuery" type="InventoriesQueryType" />
+  <xsd:complexType name="InventoriesQueryResponseType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Inventories" type="InventoriesType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="InventoriesQueryResponse" type="InventoriesQueryResponseType" />
+</xsd:schema>

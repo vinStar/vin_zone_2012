@@ -1,0 +1,6 @@
+D:\Demo\jQueryValidate\EF\bin\Debug\EF.dll.config
+D:\Demo\jQueryValidate\EF\bin\Debug\EF.dll
+D:\Demo\jQueryValidate\EF\bin\Debug\EF.pdb
+D:\Demo\jQueryValidate\EF\obj\Debug\ResolveAssemblyReference.cache
+D:\Demo\jQueryValidate\EF\obj\Debug\EF.dll
+D:\Demo\jQueryValidate\EF\obj\Debug\EF.pdb

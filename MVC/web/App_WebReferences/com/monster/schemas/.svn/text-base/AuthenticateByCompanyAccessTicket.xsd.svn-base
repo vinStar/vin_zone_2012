@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://webservices.monster.com/MonsterPortal" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" elementFormDefault="qualified" targetNamespace="http://webservices.monster.com/MonsterPortal" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="CompanyAuthHeader">
+    <xsd:complexType>
+      <xsd:all>
+        <xsd:element name="CompanyAccessTicket" type="xsd:string" />
+        <xsd:element minOccurs="0" name="SessionTicket" type="xsd:string" />
+        <xsd:element minOccurs="0" name="PersistentTicket" type="xsd:string" />
+        <xsd:element minOccurs="0" name="ResourceTicket" type="xsd:string" />
+        <xsd:element minOccurs="0" name="TrackingTicket" type="xsd:string" />
+        <xsd:element minOccurs="0" name="password" type="xsd:string" />
+      </xsd:all>
+      <xsd:anyAttribute processContents="skip" />
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

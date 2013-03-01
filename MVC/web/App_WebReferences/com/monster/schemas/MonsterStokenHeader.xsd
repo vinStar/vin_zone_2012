@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://schemas.monster.com" elementFormDefault="qualified" targetNamespace="http://schemas.monster.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="STokenHeader">
+    <xsd:complexType>
+      <xsd:all>
+        <xsd:element name="SToken" type="xsd:string" />
+        <xsd:element name="EncryptedValue" type="xsd:string" />
+      </xsd:all>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

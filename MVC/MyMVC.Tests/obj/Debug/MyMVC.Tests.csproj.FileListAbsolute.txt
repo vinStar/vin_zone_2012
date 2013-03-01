@@ -1,0 +1,8 @@
+D:\Demo\jQueryValidate\MyMVC.Tests\bin\Debug\MyMVC.Tests.dll.config
+D:\Demo\jQueryValidate\MyMVC.Tests\bin\Debug\MyMVC.Tests.dll
+D:\Demo\jQueryValidate\MyMVC.Tests\bin\Debug\MyMVC.Tests.pdb
+D:\Demo\jQueryValidate\MyMVC.Tests\bin\Debug\MyMVC.dll
+D:\Demo\jQueryValidate\MyMVC.Tests\bin\Debug\MyMVC.pdb
+D:\Demo\jQueryValidate\MyMVC.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\Demo\jQueryValidate\MyMVC.Tests\obj\Debug\MyMVC.Tests.dll
+D:\Demo\jQueryValidate\MyMVC.Tests\obj\Debug\MyMVC.Tests.pdb

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://schemas.monster.com/Current/WSDL/MonsterBusinessGateway.wsdl" filename="MonsterBusinessGatewayService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/HireRightStatus.xsd" filename="HireRightStatus.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/ws-security-2004-01.xsd" filename="ws-security-2004-01.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/MonsterHeader.xsd" filename="MonsterHeader.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/MonsterStokenHeader.xsd" filename="MonsterStokenHeader.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/ws-security-2002-07.xsd" filename="ws-security-2002-07.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/HireRightReport.xsd" filename="HireRightReport.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Monster.xsd" filename="Monster.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/ws-security.xsd" filename="ws-security.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/AuthenticateByCompanyAccessTicket.xsd" filename="AuthenticateByCompanyAccessTicket.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/CandidateSearch.xsd" filename="CandidateSearch.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Lookup.xsd" filename="Lookup.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Folder.xsd" filename="Folder.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/JobSearchAgent.xsd" filename="JobSearchAgent.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Common.xsd" filename="Common.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/ApplicantScoring.xsd" filename="ApplicantScoring.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Inventory.xsd" filename="Inventory.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/JobApplicants.xsd" filename="JobApplicants.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/JobSeeker.xsd" filename="JobSeeker.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Recruiter.xsd" filename="Recruiter.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Job.xsd" filename="Job.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Document.xsd" filename="Document.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Company.xsd" filename="Company.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Query.xsd" filename="Query.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Delete.xsd" filename="Delete.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://schemas.monster.com/current/xsd/Enumerations.xsd" filename="Enumerations.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>
