@@ -1,0 +1,5 @@
+E:\vin_zone_github\vin_zone_2012\MVC3Demo\MVC3.Demo\MVC3.Demo\bin\MVC3.Demo.dll
+E:\vin_zone_github\vin_zone_2012\MVC3Demo\MVC3.Demo\MVC3.Demo\bin\MVC3.Demo.pdb
+E:\vin_zone_github\vin_zone_2012\MVC3Demo\MVC3.Demo\MVC3.Demo\obj\Debug\MVC3.Demo.csprojResolveAssemblyReference.cache
+E:\vin_zone_github\vin_zone_2012\MVC3Demo\MVC3.Demo\MVC3.Demo\obj\Debug\MVC3.Demo.dll
+E:\vin_zone_github\vin_zone_2012\MVC3Demo\MVC3.Demo\MVC3.Demo\obj\Debug\MVC3.Demo.pdb

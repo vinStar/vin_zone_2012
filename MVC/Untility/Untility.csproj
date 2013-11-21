@@ -12,10 +12,14 @@
     <AssemblyName>Untility</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,8 +62,22 @@
   <ItemGroup>
     <Compile Include="Caching\EnyimMemcached.cs" />
     <Compile Include="Caching\FkrCache.cs" />
+    <Compile Include="Comman\CacheHelper.cs" />
     <Compile Include="Comman\Class1.cs" />
+    <Compile Include="Comman\CookiesHelper.cs" />
+    <Compile Include="Comman\Dynamic_Keys.cs" />
+    <Compile Include="Comman\EncryptHelper.cs" />
+    <Compile Include="Comman\FilesHelper.cs" />
     <Compile Include="Comman\HtmlToPdf.cs" />
+    <Compile Include="Comman\ImageHelper.cs" />
+    <Compile Include="Comman\JavascriptHelper.cs" />
+    <Compile Include="Comman\JudgeHelper.cs" />
+    <Compile Include="Comman\Keys.cs" />
+    <Compile Include="Comman\LoadImage.cs" />
+    <Compile Include="Comman\PagingHelper.cs" />
+    <Compile Include="Comman\SerializationHelper.cs" />
+    <Compile Include="Comman\UploadHelper.cs" />
+    <Compile Include="Comman\XmlHelper.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

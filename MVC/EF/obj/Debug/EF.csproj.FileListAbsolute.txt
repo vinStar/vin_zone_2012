@@ -4,3 +4,9 @@ D:\Demo\jQueryValidate\EF\bin\Debug\EF.pdb
 D:\Demo\jQueryValidate\EF\obj\Debug\ResolveAssemblyReference.cache
 D:\Demo\jQueryValidate\EF\obj\Debug\EF.dll
 D:\Demo\jQueryValidate\EF\obj\Debug\EF.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\EF\bin\Debug\EF.dll.config
+E:\vin_zone_github\vin_zone_2012\MVC\EF\bin\Debug\EF.dll
+E:\vin_zone_github\vin_zone_2012\MVC\EF\bin\Debug\EF.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\EF\obj\Debug\EF.dll
+E:\vin_zone_github\vin_zone_2012\MVC\EF\obj\Debug\EF.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache

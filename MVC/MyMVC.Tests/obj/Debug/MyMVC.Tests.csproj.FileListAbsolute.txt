@@ -6,3 +6,11 @@ D:\Demo\jQueryValidate\MyMVC.Tests\bin\Debug\MyMVC.pdb
 D:\Demo\jQueryValidate\MyMVC.Tests\obj\Debug\ResolveAssemblyReference.cache
 D:\Demo\jQueryValidate\MyMVC.Tests\obj\Debug\MyMVC.Tests.dll
 D:\Demo\jQueryValidate\MyMVC.Tests\obj\Debug\MyMVC.Tests.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\bin\Debug\MyMVC.Tests.dll.config
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\bin\Debug\MyMVC.Tests.dll
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\bin\Debug\MyMVC.Tests.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\bin\Debug\MyMVC.dll
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\bin\Debug\MyMVC.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\obj\Debug\MyMVC.Tests.csprojResolveAssemblyReference.cache
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\obj\Debug\MyMVC.Tests.dll
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC.Tests\obj\Debug\MyMVC.Tests.pdb

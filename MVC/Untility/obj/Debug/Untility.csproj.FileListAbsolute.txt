@@ -7,3 +7,8 @@ D:\Demo\jQueryValidate\Untility\bin\Debug\log4net.dll
 D:\Demo\jQueryValidate\Untility\obj\Debug\ResolveAssemblyReference.cache
 D:\Demo\jQueryValidate\Untility\obj\Debug\Untility.dll
 D:\Demo\jQueryValidate\Untility\obj\Debug\Untility.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\Untility\bin\Debug\Untility.dll
+E:\vin_zone_github\vin_zone_2012\MVC\Untility\bin\Debug\Untility.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\Untility\obj\Debug\Untility.dll
+E:\vin_zone_github\vin_zone_2012\MVC\Untility\obj\Debug\Untility.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\Untility\obj\Debug\Untility.csprojResolveAssemblyReference.cache

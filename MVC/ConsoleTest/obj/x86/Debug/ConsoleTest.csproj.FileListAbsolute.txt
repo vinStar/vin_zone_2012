@@ -3,3 +3,8 @@ D:\Demo\jQueryValidate\ConsoleTest\bin\Debug\ConsoleTest.pdb
 D:\Demo\jQueryValidate\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\Demo\jQueryValidate\ConsoleTest\obj\x86\Debug\ConsoleTest.exe
 D:\Demo\jQueryValidate\ConsoleTest\obj\x86\Debug\ConsoleTest.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\ConsoleTest\bin\Debug\ConsoleTest.exe
+E:\vin_zone_github\vin_zone_2012\MVC\ConsoleTest\bin\Debug\ConsoleTest.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\ConsoleTest\obj\x86\Debug\ConsoleTest.exe
+E:\vin_zone_github\vin_zone_2012\MVC\ConsoleTest\obj\x86\Debug\ConsoleTest.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\ConsoleTest\obj\x86\Debug\ConsoleTest.csprojResolveAssemblyReference.cache

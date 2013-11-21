@@ -3,3 +3,8 @@ D:\Demo\jQueryValidate\MyMVC\bin\MyMVC.pdb
 D:\Demo\jQueryValidate\MyMVC\obj\Debug\ResolveAssemblyReference.cache
 D:\Demo\jQueryValidate\MyMVC\obj\Debug\MyMVC.dll
 D:\Demo\jQueryValidate\MyMVC\obj\Debug\MyMVC.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC\obj\Debug\MyMVC.csprojResolveAssemblyReference.cache
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC\bin\MyMVC.dll
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC\bin\MyMVC.pdb
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC\obj\Debug\MyMVC.dll
+E:\vin_zone_github\vin_zone_2012\MVC\MyMVC\obj\Debug\MyMVC.pdb

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>添加用户</title>
+</head>
+<body>
+    @using (@Html.BeginForm())
+    {
+        <div>
+            用户名：@Html.TextBox("txtUserName", null, new { @style = "width:200px" })
+        </div>
+        <div>
+            密码：@Html.Password("txtPassword")
+        </div>       
+        <input type="submit" value="提交" />
+    }
+</body>
+</html>
